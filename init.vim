@@ -18,16 +18,17 @@ set expandtab ts=4 sw=4 ai
 
 call plug#begin('/Users/lovermac/.local/share/nvim/site/autoload/')
 Plug 'preservim/nerdtree' " dir navigator
-Plug 'ryanoasis/vim-devicons' " custom icons, install hack nerd font family from https://github.com/ryanoasis/nerd-fonts#font-installation if you have visual issues
+Plug 'ryanoasis/vim-devicons' " custom icons
 Plug 'vim-python/python-syntax'
 Plug 'neovim/nvim-lspconfig' " main LSP plugin
 " set of autocomplete plugins
-Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
 Plug 'hrsh7th/nvim-cmp'
+Plug 'will133/vim-dirdiff'
+Plug 'darfink/vim-plist' " plist support https://github.com/darfink/vim-plist
 " Plug 'cjrh/vim-conda' " to activate CONDA env manager
 
 " color schemas
@@ -149,11 +150,11 @@ function echo_diagnostic()
 end
 EOF
 autocmd CursorMoved * :lua echo_diagnostic()
-" wordwrap END
 
 let g:airline_powerline_fonts = 1
-" custom colors setup
-" colorscheme gruvbox-material setup()
+
+" custom colors setup "
+" colorscheme gruvbox-material setup() "
 set background=dark
 let g:gruvbox_material_foreground = 'material'
 let g:gruvbox_material_background = 'soft'
@@ -163,8 +164,7 @@ let g:gruvbox_material_enable_italic = 1
 let g:gruvbox_material_transparent_background = 2 
 let g:gruvbox_material_dim_inactive_windows = 1
 let g:gruvbox_material_ui_contrast = 'high'
-" let g:gruvbox_material_statusline_style = 'original'
-" let g:gruvbox_material_colors_override = {''} "to custom setup, line numbers
+"let g:gruvbox_material_colors_override = {''} to custom setup, line numbers"
 
 colorscheme gruvbox-material 
 highlight LineNr ctermfg=white "to change color of line numbers 
@@ -238,8 +238,9 @@ lua <<EOF
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['pyright'].setup {
+require'lspconfig'.pyright.setup{
     capabilities = capabilities
-  }
+}
+
 EOF
 
